@@ -10,6 +10,8 @@
   - [Page Object Model (POM)](https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/), as design pattern (commonly used with Selenium)
   - [Optional] [Allure Behave](https://allurereport.org/docs/behave/), to generate HTML reports
 
+ _Note: This project was developed using the work done in [source link](https://github.com/arunmotoori/TutorialsNinjaBehaveBDDHybridFrameworkWithPageObjectModel) as guidance_
+
 
 ## Why is this a good framework?
 - BDD uses gherkin syntax so our tests are written in a language very similar to plain english, which means our tests are self documented and directly translate to user requirements
