@@ -18,8 +18,10 @@ def before_scenario(context, driver):
     context.driver.maximize_window()
     context.driver.get(ConfigReader.read_config("basic info", "url"))
 
+
 def after_scenario(context, driver):
     context.driver.quit()
+
 
 def after_step(context, step):
     if step.status == "failed":
