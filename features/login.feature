@@ -13,7 +13,7 @@ Feature: User Login functionality
     And I click Login button
     Then I should get an error message with text as "Incorrect password!"
 
-  @login
+  @another
   Scenario: User login with valid credentials
     Given I got navigated to Login page
     When I enter password as "123"
