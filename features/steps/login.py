@@ -6,7 +6,7 @@ from features.pages.MainPage import MainPage
 @given(u'I got navigated to Login page')
 def step_impl(context):
     context.login_page = LoginPage(context.driver)
-    assert context.login_page.check_login_page_text_exists("Please login!")
+    assert context.login_page.check_login_page_text_exists("ENSF607/608 Planning a Vacation")
 
 
 @when(u'I click Login button')
@@ -27,3 +27,9 @@ def step_impl(context, password):
 @then(u'I should get logged in')
 def step_impl(context):
     assert context.main_page.verify_user_login()
+
+
+@when(u'I enter username as "{username}"')
+def step_impl(context, username):
+    context.login_page.enter_username(username)
+

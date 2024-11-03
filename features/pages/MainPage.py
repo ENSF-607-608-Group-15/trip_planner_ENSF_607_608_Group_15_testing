@@ -11,11 +11,12 @@ class MainPage(BasePage):
 
 
     # Constants
-    logout_button_xpath = "//button[@id='toggleButton' and text()='Logout']"
+    # logout_button_xpath = "//button[@id='toggleButton' and text()='Logout']" # Removed
+    plan_vacation_button_xpath = "//input[@type='submit' and @value='Plan Vacation']"
 
     def verify_user_login(self):
         try:
-            element = self.find_element("logout_button_xpath", self.logout_button_xpath)
+            element = self.find_element("plan_vacation_button_xpath", self.plan_vacation_button_xpath)
             return element.is_displayed() if element else False
         except NoSuchElementException:
             return False

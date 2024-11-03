@@ -11,7 +11,8 @@ class LoginPage(BasePage):
 
 
     # Constants
-    login_button_xpath = "//button[@id='toggleButton' and text()='Login']"
+    login_button_xpath = "//*[@type='submit' and @value='Loginme']"
+    username_textbox_id = "usernameInput"
     password_textbox_id = "passwordInput"
 
 
@@ -27,3 +28,9 @@ class LoginPage(BasePage):
 
     def check_login_page_text_exists(self, text):
         return self.verify_text_exists(text)
+
+    def enter_username(self, username_text):
+        self.send_keys_into_element("username_textbox_id", self.username_textbox_id, username_text)
+
+    def check_title_exists(self, text):
+        return self.verify_page_title(text)
