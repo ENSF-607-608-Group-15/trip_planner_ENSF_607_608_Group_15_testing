@@ -4,10 +4,10 @@ from features.pages.MainPage import MainPage
 from features.pages.SignupPage import SignupPage
 
 
-@given(u'I got navigated to Signup page')
+@given(u'I got navigated to Login page')
 def step_impl(context):
-    context.signup_page = SignupPage(context.driver)
-    assert context.signup_page.check_page_is_active()
+    context.login_page = LoginPage(context.driver)
+    assert context.login_page.check_page_is_active()
 
 
 @when(u'I click Login button')

@@ -31,3 +31,7 @@ class LoginPage(BasePage):
 
     def check_username_error_message(self, expected_message):
         return self.verify_validation_message("username_login_textbox_name", self.username_login_textbox_name, expected_message)
+
+    def check_page_is_active(self):
+        element_exists = self.verify_element_exists("login_button_id", self.login_button_id)
+        return element_exists
