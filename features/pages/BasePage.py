@@ -78,4 +78,4 @@ class BasePage:
     def verify_validation_message(self, locator_type, locator_value, expected_message):
         element = self.find_element(locator_type, locator_value)
         actual_message = element.get_attribute("validationMessage")
-        return expected_message == actual_message
+        return (expected_message == actual_message) and element.is_displayed()

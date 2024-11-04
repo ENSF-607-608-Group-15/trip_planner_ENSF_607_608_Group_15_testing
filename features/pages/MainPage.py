@@ -13,4 +13,5 @@ class MainPage(BasePage):
     welcome_header_xpath = "//H2[text()='Welcome to your Vacation Planner']"
 
     def verify_user_login(self):
-        return self.verify_element_exists("welcome_header_xpath", self.welcome_header_xpath)
+        return self.verify_element_exists("welcome_header_xpath",
+                                          self.welcome_header_xpath)

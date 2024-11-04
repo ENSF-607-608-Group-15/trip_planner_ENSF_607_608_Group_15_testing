@@ -1,11 +1,11 @@
 Feature: User Login functionality
 
-  @test
+  @login
   Scenario: User login with no credentials
     Given I got navigated to Signup page
     When I switch to Login view
     And I click Login button
-    Then I should get an error message with text as "Please fill out this field."
+    Then I should get a username error message with text as "Please fill out this field."
 
   @login
   Scenario: User login with invalid credentials

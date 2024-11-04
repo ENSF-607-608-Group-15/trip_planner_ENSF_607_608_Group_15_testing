@@ -38,8 +38,8 @@ def step_impl(context, username):
 def step_impl(context):
     context.login_page = context.signup_page.switch_to_login_view()
 
-@then(u'I should get an error message with text as "{expected_text}"')
+@then(u'I should get a username error message with text as "{expected_text}"')
 def step_impl(context, expected_text):
-    raise NotImplementedError(u'STEP: Then I should get an error message with text as "Incorrect password!"')
+    assert context.login_page.check_username_error_message(expected_text)
 
 
