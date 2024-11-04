@@ -1,4 +1,8 @@
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 class BasePage:
 
@@ -9,20 +13,32 @@ class BasePage:
 
 
     # Methods
-    def find_element(self, locator_type, locator_value):
+    def find_element(self, locator_type, locator_value, wait_time=10):
         element = None
         if locator_type.endswith("_id"):
-            element = self.driver.find_element(By.ID, locator_value)
+            element = WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located((By.ID, locator_value))
+            )
         elif locator_type.endswith("_name"):
-            element = self.driver.find_element(By.NAME, locator_value)
+            element = WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located((By.NAME, locator_value))
+            )
         elif locator_type.endswith("_class_name"):
-            element = self.driver.find_element(By.CLASS_NAME, locator_value)
+            element = WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located((By.CLASS_NAME, locator_value))
+            )
         elif locator_type.endswith("_link_text"):
-            element = self.driver.find_element(By.LINK_TEXT, locator_value)
+            element = WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located((By.LINK_TEXT, locator_value))
+            )
         elif locator_type.endswith("_xpath"):
-            element = self.driver.find_element(By.XPATH, locator_value)
+            element = WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located((By.XPATH, locator_value))
+            )
         elif locator_type.endswith("_css"):
-            element = self.driver.find_element(By.CSS_SELECTOR, locator_value)
+            element = WebDriverWait(self.driver, wait_time).until(
+                EC.visibility_of_element_located((By.CSS_SELECTOR, locator_value))
+            )
         return element
 
 
@@ -35,12 +51,12 @@ class BasePage:
         self.driver.title.__eq__(expected_title_text)
 
 
-    def verify_text_exists(self, expected_text):
-        elements = self.driver.find_elements(By.XPATH, "//*")
-        for element in elements:
-            if expected_text in element.text:
-                return True
-        return False
+    def verify_element_exists(self, locator_type, locator_value):
+        try:
+            element = self.find_element(locator_type, locator_value)
+            return element.is_displayed() if element else False
+        except NoSuchElementException:
+            return False
 
 
     def send_keys_into_element(self, locator_type, locator_value, text):
@@ -57,4 +73,9 @@ class BasePage:
 
     def element_text_equals(self, locator_type, locator_value, expected_text):
         element = self.find_element(locator_type, locator_value)
-        return element.text.__eq__(expected_text)
+        return element.text == expected_text
+
+    def verify_validation_message(self, locator_type, locator_value, expected_message):
+        element = self.find_element(locator_type, locator_value)
+        actual_message = element.get_attribute("validationMessage")
+        return expected_message == actual_message
