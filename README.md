@@ -1,6 +1,8 @@
 # trip_planner_ENSF_607_608_Group_15_testing
 
 Authors:
+- Warisa Khaophong
+- Yael Gonzalez
 
 ## Description
 - This project was created to test [trip_planner_ENSF_607_608_Group_15_development](https://github.com/ENSF-607-608-Group-15/trip_planner_ENSF_607_608_Group_15_development.git)
