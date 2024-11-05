@@ -14,7 +14,7 @@
 
 
 ## Why is this a good framework?
-- BDD uses gherkin syntax so our tests are written in a language very similar to plain english, which means our tests are self documented and directly translate to user requirements
+- BDD uses gherkin syntax so our tests are written in a language very similar to plain English, which means our tests are self documented and directly translate to user requirements
 - Behave allows us to use `context` to specify flexible objects / properties defined in runtime per session (scenario), which allows tests to run in parallel
 - Selenium allows us to test in different browsers and platforms to ensure our app is reliable
 - POM allows us to keep loose coupling and high cohesion
