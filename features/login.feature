@@ -1,13 +1,13 @@
 Feature: User Login functionality
 
   @login
-  Scenario: User login with no credentials
+  Scenario: [TC0010] User login with no credentials
     Given I got navigated to Login page
     When I click Login button
     Then I should get a username error message with text as "Please fill out this field."
 
   @login
-  Scenario: User login with invalid credentials
+  Scenario: [TC0011] User login with invalid credentials
     Given I got navigated to Login page
     When I enter username as "UnregisteredUser"
     And I enter password as "fakepassword"
@@ -15,7 +15,7 @@ Feature: User Login functionality
     Then I should get redirected to the Sign up page
 
   @login
-  Scenario Outline: User login with valid credentials
+  Scenario:[TC0012]  User login with valid credentials
     Given I got navigated to Login page
     When I enter username as "<username>"
     And I enter password as "<password>"
