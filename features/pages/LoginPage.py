@@ -1,7 +1,6 @@
 from features.pages.BasePage import BasePage
 from features.pages.MainPage import MainPage
 
-
 class LoginPage(BasePage):
 
     # Constructor
@@ -13,7 +12,7 @@ class LoginPage(BasePage):
     login_button_id = "loginbtn"
     username_login_textbox_name = "usernameLogin"
     password_login_textbox_name = "passwordLogin"
-
+    signup_button_xpath = "/html/body/div[1]/div[1]/form[3]/label"
 
     # Methods
     def enter_username(self, username_text):
@@ -35,3 +34,6 @@ class LoginPage(BasePage):
     def check_page_is_active(self):
         element_exists = self.verify_element_exists("login_button_id", self.login_button_id)
         return element_exists
+    
+    def click_on_signup_button(self):
+        self.click_on_element("signup_button_xpath", self.signup_button_xpath)
