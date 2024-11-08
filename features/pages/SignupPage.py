@@ -1,5 +1,4 @@
 from features.pages.BasePage import BasePage
-from features.pages.LoginPage import LoginPage
 
 
 class SignupPage(BasePage):
@@ -28,18 +27,15 @@ class SignupPage(BasePage):
 
     def click_on_login_view(self):
         self.click_on_element("login_label_xpath", self.login_label_xpath)
-        return LoginPage(self.driver)
     
 
     def verify_page_is_active(self):
-        element_exists = self.verify_element_exists(
-            "signup_button_id", self.signup_button_id)
+        element_exists = self.verify_element_exists("signup_button_id", self.signup_button_id)
         return element_exists
     
 
     def click_on_signup_button(self):
         self.click_on_element("signup_button_id", self.signup_button_id)
-        return SignupPage(self.driver)
     
 
     def verify_username_error_message(self, expected_message):

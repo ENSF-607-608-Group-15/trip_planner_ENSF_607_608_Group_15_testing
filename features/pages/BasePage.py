@@ -68,12 +68,12 @@ class BasePage:
 
     def element_text_contains(self, locator_type, locator_value, expected_text):
         element = self.find_element(locator_type, locator_value)
-        return element.text.__contains__(expected_text)
+        return element.text.__contains__(expected_text) and element.is_displayed()
 
 
     def element_text_equals(self, locator_type, locator_value, expected_text):
         element = self.find_element(locator_type, locator_value)
-        return element.text == expected_text
+        return element.text == expected_text and element.is_displayed()
 
     def verify_validation_message(self, locator_type, locator_value, expected_message):
         element = self.find_element(locator_type, locator_value)

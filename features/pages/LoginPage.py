@@ -33,8 +33,7 @@ class LoginPage(BasePage):
         return self.verify_validation_message("username_login_textbox_name", self.username_login_textbox_name, expected_message)
 
     def verify_page_is_active(self):
-        element_exists = self.verify_element_exists(
-            "login_button_id", self.login_button_id)
+        element_exists = self.verify_element_exists("login_button_id", self.login_button_id)
         return element_exists
 
     def click_on_signup_view(self):
