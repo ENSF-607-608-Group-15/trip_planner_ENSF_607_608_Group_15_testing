@@ -10,8 +10,8 @@ class MainPage(BasePage):
 
 
     # Constants
-    welcome_header_xpath = "//H2[text()='Welcome to your Vacation Planner']"
+    generate_trip_button_xpath = "//*[@class='btn btn-primary']"
 
     def verify_user_login(self):
-        return self.verify_element_exists("welcome_header_xpath",
-                                          self.welcome_header_xpath)
+        return self.verify_element_exists("generate_trip_button_xpath",
+                                          self.generate_trip_button_xpath)

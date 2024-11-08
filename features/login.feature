@@ -12,17 +12,23 @@ Feature: User Login functionality
     When I enter username as "UnregisteredUser"
     And I enter password as "fakepassword"
     And I click Login button
-    Then I should get redirected to the Sign up page
+    Then I should get an error message with text as "Please enter a valid username and password."
 
   @login
-  Scenario:[TC0012]  User login with valid credentials
+  Scenario Outline:[TC0012]  User login with valid credentials
     Given I got navigated to Login page
     When I enter username as "<username>"
     And I enter password as "<password>"
     And I click Login button
     Then I should get logged in
     Examples:
-    | username | password         |
-    | a        | a                |
-    | Poz      | awesomepassword  |
-    | Neos     | this-is-garbage8 |
+      | username | password         |
+      | a        | a                |
+      | Poz      | awesomepassword  |
+      | Neos     | this-is-garbage8 |
+
+  @login
+  Scenario: [TC0013] Guest user login
+    Given I got navigated to Login page
+    When I click Continue as Guest button
+    Then I should get logged in
