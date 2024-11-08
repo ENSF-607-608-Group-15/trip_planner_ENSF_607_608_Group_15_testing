@@ -43,7 +43,7 @@ class SignupPage(BasePage):
 
 
     def verify_password_error_message(self, expected_message):
-        return self.verify_validation_message("password_signup_textbox_name ", self.password_signup_textbox_name, expected_message)
+        return self.verify_validation_message("password_signup_textbox_name", self.password_signup_textbox_name, expected_message)
 
 
     def verify_error_message_equals(self, expected_message):
