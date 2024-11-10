@@ -47,6 +47,8 @@ class BasePage:
 
         return element
 
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def click_on_element(self, locator_type, locator_value):
         element = self.find_element(locator_type, locator_value)
@@ -67,6 +69,7 @@ class BasePage:
 
     def send_keys_into_element(self, locator_type, locator_value, text):
         element = self.find_element(locator_type, locator_value)
+        self.scroll_to_element(element)  # Scroll the element into view
         element.click()
         element.clear()
         element.send_keys(text)

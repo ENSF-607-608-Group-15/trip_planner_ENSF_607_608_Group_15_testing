@@ -48,3 +48,5 @@ class SignupPage(BasePage):
 
     def verify_error_message_equals(self, expected_message):
         return self.element_text_equals("error_message_xpath", self.error_message_xpath, expected_message)
+
+    
