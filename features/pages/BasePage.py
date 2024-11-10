@@ -2,6 +2,7 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BasePage:
@@ -39,6 +40,11 @@ class BasePage:
             element = WebDriverWait(self.driver, wait_time).until(
                 EC.visibility_of_element_located((By.CSS_SELECTOR, locator_value))
             )
+
+        if element:
+            actions = ActionChains(self.driver)
+            actions.move_to_element(element).perform()
+
         return element
 
 
