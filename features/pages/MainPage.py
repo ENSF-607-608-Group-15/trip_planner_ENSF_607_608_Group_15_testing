@@ -14,10 +14,8 @@ class MainPage(BasePage):
     generate_trip_button_xpath = "//*[@class='btn btn-primary']"
     departure_city_textbox_id = "inputCity"
     departure_date_picker_id = "dDate"
-    # departure_city_textbox_name = "inputCity"
-    desired_location_textbox_name  = "tripLocation"
-    # departure_date_id = "dDate"
-    return_date_id = "rDate"
+    desired_location_textbox_id = "tripLocation"
+    return_date_picker_id = "rDate"
     budget_textbox_id = "tripBudget"
     no_flying_checkbox_id = "noFlying"
     disability_friendly_checkbox_id = "disabilityFriendly"
@@ -30,6 +28,7 @@ class MainPage(BasePage):
     plan_content_xpath = "//div[contains(@class, 'plan-content')]" 
     previous_plan_xpath = "//div[contains(@class, 'vacation')]"
 
+
     def verify_user_login(self):
         return self.verify_element_exists("generate_trip_button_xpath",
                                           self.generate_trip_button_xpath)
@@ -38,20 +37,19 @@ class MainPage(BasePage):
         formatted_date = format_date_by_locale(self.driver, departure_date)
         self.send_keys_into_element("departure_date_picker_id", self.departure_date_picker_id, formatted_date)
 
-
-
     def enter_departure_city(self, departure_city_text):
-        self.send_keys_into_element("departure_city_textbox_name", self.departure_city_textbox_name, departure_city_text)
+        self.send_keys_into_element("departure_city_textbox_id", self.departure_city_textbox_id, departure_city_text)
 
     def enter_desired_location(self, desired_location_text):
-        self.send_keys_into_element("desired_location_textbox_name", self.desired_location_textbox_name, desired_location_text)
-    
-    # def enter_departure_date(self, departure_date_text):
-    #     self.send_keys_into_element("departure_date_id", self.departure_date_id, departure_date_text)
+        self.send_keys_into_element("desired_location_textbox_id", self.desired_location_textbox_id, desired_location_text)
 
-    def enter_return_date(self, return_date_text):
-        self.send_keys_into_element("return_date_id", self.return_date_id, return_date_text)
+    def enter_return_date(self, return_date):
+        formatted_date = format_date_by_locale(self.driver, return_date)
+        self.send_keys_into_element("return_date_picker_id", self.return_date_picker_id, formatted_date)
 
+    def enter_budget(self, budget):
+        self.send_keys_into_element("budget_textbox_id", self.budget_textbox_id, budget)
+   
     def click_on_generate_trip_button(self):
         self.click_on_element("generate_trip_button_xpath", self.generate_trip_button_xpath)    
 
@@ -65,3 +63,10 @@ class MainPage(BasePage):
     def verify_previous_plan_is_active(self):
         element_exists = self.verify_element_exists("previous_plan_xpath", self.previous_plan_xpath)
         return element_exists
+
+    def click_on_family_friendly_checkbox(self):
+        self.click_on_element("family_friendly_checkbox_id", self.family_friendly_checkbox_id)
+
+    def verify_family_text_contain(self, text="family"):
+        text_exits = self.element_text_contains("plan_content_xpath", self.plan_content_xpath, text)
+        return text_exits

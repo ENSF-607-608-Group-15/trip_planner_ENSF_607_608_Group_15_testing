@@ -14,7 +14,7 @@ class BasePage:
 
 
     # Methods
-    def find_element(self, locator_type, locator_value, wait_time=10):
+    def find_element(self, locator_type, locator_value, wait_time=15):
         element = None
         if locator_type.endswith("_id"):
             element = WebDriverWait(self.driver, wait_time).until(
@@ -47,7 +47,8 @@ class BasePage:
 
         return element
 
-    def scroll_to_element(self, element):
+    def scroll_to_element(self, locator_type, locator_value):
+        element = self.find_element(locator_type, locator_value)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def click_on_element(self, locator_type, locator_value):
@@ -66,19 +67,15 @@ class BasePage:
         except NoSuchElementException:
             return False
 
-
     def send_keys_into_element(self, locator_type, locator_value, text):
         element = self.find_element(locator_type, locator_value)
-        self.scroll_to_element(element)  # Scroll the element into view
         element.click()
         element.clear()
         element.send_keys(text)
 
-
     def element_text_contains(self, locator_type, locator_value, expected_text):
         element = self.find_element(locator_type, locator_value)
         return element.text.__contains__(expected_text) and element.is_displayed()
-
 
     def element_text_equals(self, locator_type, locator_value, expected_text):
         element = self.find_element(locator_type, locator_value)
