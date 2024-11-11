@@ -9,7 +9,6 @@ class MainPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-
     # Constants
     generate_trip_button_xpath = "//*[@class='btn btn-primary']"
     departure_city_textbox_id = "inputCity"
@@ -49,7 +48,10 @@ class MainPage(BasePage):
 
     def enter_budget(self, budget):
         self.send_keys_into_element("budget_textbox_id", self.budget_textbox_id, budget)
-   
+    
+    def enter_theme(self, theme):
+        self.send_keys_into_element("trip_theme_textbox_id", self.trip_theme_textbox_id, theme)
+
     def click_on_generate_trip_button(self):
         self.click_on_element("generate_trip_button_xpath", self.generate_trip_button_xpath)    
 
@@ -67,6 +69,23 @@ class MainPage(BasePage):
     def click_on_family_friendly_checkbox(self):
         self.click_on_element("family_friendly_checkbox_id", self.family_friendly_checkbox_id)
 
-    def verify_family_text_contain(self, text="family"):
-        text_exits = self.element_text_contains("plan_content_xpath", self.plan_content_xpath, text)
-        return text_exits
+    def click_on_no_flying_checkbox(self):
+        self.click_on_element("no_flying_checkbox_id", self.no_flying_checkbox_id)
+
+    def click_on_disability_friendly_checkbox(self):
+        self.click_on_element("disability_friendly_checkbox_id", self.disability_friendly_checkbox_id)
+
+    def click_on_group_discount_checkbox(self):
+        self.click_on_element("group_discount_checkbox_id", self.group_discount_checkbox_id)
+
+    def verify_suggestions_text_contain(self, keywords_list):
+        for keyword in keywords_list:
+            try:
+                element = self.find_element("plan_content_xpath", self.plan_content_xpath)
+                if keyword not in element.text:
+                    print(f"Keyword '{keyword}' not found in element text.")
+                    return False
+            except Exception as e:
+                print(f"Error finding element or text for keyword '{keyword}': {e}")
+                return False
+        return True

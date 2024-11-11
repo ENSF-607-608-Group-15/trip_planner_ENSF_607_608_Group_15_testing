@@ -32,6 +32,11 @@ def step_impl(context, budget):
    context.main_page.enter_budget(budget)
    context.budget = budget
 
+@when(u'I enter a theme as "{theme}"')
+def step_impl(context, theme):
+    context.main_page.enter_theme(theme)
+    context.theme = theme
+
 @when(u'I click Generate My Trip button')
 def step_impl(context):
    context.main_page.click_on_generate_trip_button()
@@ -65,7 +70,21 @@ def step_impl(context):
 def step_impl(context):
     context.main_page.click_on_family_friendly_checkbox()
 
+@when(u'I select the no-flying option')
+def step_impl(context):
+    context.main_page.click_on_no_flying_checkbox()
 
-@then(u'I should see vacation plan suggestions related to "{expected_text}"')
-def step_impl(context, expected_text):
-   assert context.main_page.verify_family_text_contain(expected_text)
+
+@when(u'I select the disability-friendly option')
+def step_impl(context):
+    context.main_page.click_on_disability_friendly_checkbox()
+
+
+@when(u'I select the group discount option')
+def step_impl(context):
+    context.main_page.click_on_group_discount_checkbox()
+
+@then(u'I should see vacation plan suggestions related to "{keywords}"')
+def step_impl(context, keywords):
+    keywords_list = [keyword.strip() for keyword in keywords.split(",")]
+    assert context.main_page.verify_suggestions_text_contain(keywords_list)
