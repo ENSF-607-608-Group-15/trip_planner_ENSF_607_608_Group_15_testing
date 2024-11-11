@@ -11,7 +11,7 @@ Feature: Vacation generator functionality
     And I enter departure date as "2024-11-25"
     And I enter desired trip location as "bangkok"
     And I enter a budget limit of "2500"
-    And I enter a theme as "cafe"
+    And I enter a trip theme as "cafe"
     And I click Generate My Trip button
     Then I should see the vacation planning details
 
@@ -35,7 +35,7 @@ Feature: Vacation generator functionality
     And I enter departure date as "2024-11-25"
     And I enter desired trip location as "toronto"
     And I enter a budget limit of "2500"
-    And I enter a theme as "museum"
+    And I enter a trip theme as "museum"
     And I select the family-friendly option
     And I select the no-flying option
     And I select the disability-friendly option
@@ -45,7 +45,7 @@ Feature: Vacation generator functionality
     And I should see vacation plan suggestions not related to "fly,plane"
 
   @vacation
-  Scenario: [TC0016] User enter negative value of budget
+  Scenario: [TC0016] User enters negative value of budget
   Given I got navigated to Login page
     When I enter login username as "abc"
     And I enter login password as "123"
@@ -54,7 +54,7 @@ Feature: Vacation generator functionality
     Then I should see an error popup indicating "Please enter a positive value."
 
   @vacation
-  Scenario: [TC0017] User enter return date earlier than departure date
+  Scenario: [TC0017] User enters return date earlier than departure date
     Given I got navigated to Login page
     When I enter login username as "abc"
     And I enter login password as "123"
@@ -64,7 +64,7 @@ Feature: Vacation generator functionality
     And I enter return date as "2024-11-02"
     And I click Generate My Trip button
     # Change to your date format
-    Then I should get a return date error message with text as "Value must be 112520-02-04 or later."
+    Then I should get a return date error message with text as "Value must be 112520-02-04 or later." 
 
   @vacation
   Scenario: [TC0017] Version 2, User enter return date earlier than departure date
@@ -76,3 +76,27 @@ Feature: Vacation generator functionality
     And I enter return date as "2024-11-02"
     And I enter departure date as "2024-11-25"
     Then I should see an error popup indicating "Return date cannot be earlier than departure date."
+  
+  @vacation
+  Scenario: [TC0018] User sees presence of PDF download link
+  Given I got navigated to Login page
+    When I enter username as "abc"
+    And I enter password as "123"
+    And I click Login button
+    And I enter departure city as "calgary"
+    And I enter departure date as "2024-11-25"
+    And I enter return date as "2024-11-30"
+    And I enter desired trip location as "toronto"
+    And I enter a budget limit of "2500"
+    And I enter a trip theme as "museum"
+    And I click Generate My Trip button
+    Then I should see a PDF download link 
+ 
+  @vacation
+  Scenario: [TC0019] User skips required fields for trip planning
+    Given I got navigated to Login page
+    When I enter username as "abc"
+    And I enter password as "123"
+    And I click Login button
+    And I click Generate My Trip button
+    Then I should see required field error messages for each missing input

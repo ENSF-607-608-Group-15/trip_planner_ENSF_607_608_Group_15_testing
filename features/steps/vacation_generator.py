@@ -11,8 +11,8 @@ def step_impl(context, departure_city):
 
 @when(u'I enter departure date as "{departure_date}"')
 def step_impl(context, departure_date):
-      context.main_page.enter_departure_date(departure_date)
-      context.departure_date = departure_date
+    context.main_page.enter_departure_date(departure_date)
+    context.departure_date = departure_date
 
 
 @when(u'I enter return date as "{return_date}"')
@@ -29,11 +29,11 @@ def step_impl(context, desired_location):
 
 @when(u'I enter a budget limit of "{budget}"')
 def step_impl(context, budget):
-   context.main_page.enter_budget(budget)
-   context.budget = budget
+    context.main_page.enter_budget(budget)
+    context.budget = budget
 
 
-@when(u'I enter a theme as "{theme}"')
+@when(u'I enter a trip theme as "{theme}"')
 def step_impl(context, theme):
     context.main_page.enter_theme(theme)
     context.theme = theme
@@ -41,7 +41,7 @@ def step_impl(context, theme):
 
 @when(u'I click Generate My Trip button')
 def step_impl(context):
-   context.main_page.click_on_generate_trip_button()
+    context.main_page.click_on_generate_trip_button()
 
 
 @then(u'I should see the vacation planning details')
@@ -99,3 +99,8 @@ def step_impl(context, error_message):
 @then(u'I should get a return date error message with text as "{expected_text}"')
 def step_impl(context, expected_text):
     assert context.main_page.verify_return_date_error_message(expected_text)
+
+
+@then(u'I should see a PDF download link')
+def step_impl(context):
+    assert context.main_page.verify_pdf_download_link_exists()
