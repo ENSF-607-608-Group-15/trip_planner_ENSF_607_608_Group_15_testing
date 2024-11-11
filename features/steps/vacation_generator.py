@@ -88,3 +88,11 @@ def step_impl(context):
 def step_impl(context, keywords):
     keywords_list = [keyword.strip() for keyword in keywords.split(",")]
     assert context.main_page.verify_suggestions_text_contain(keywords_list)
+
+@then(u'I should see an error popup indicating "{error_message}"')
+def step_impl(context, error_message):
+    assert context.main_page.verify_error_popup(error_message)
+
+@then(u'I should get a return date error message with text as "{expected_text}"')
+def step_impl(context, expected_text):
+    assert context.main_page.verify_return_date_error_message(expected_text)

@@ -55,7 +55,6 @@ class BasePage:
         element = self.find_element(locator_type, locator_value)
         element.click()
 
-
     def verify_page_title(self, expected_title_text):
         self.driver.title.__eq__(expected_title_text)
 
@@ -85,3 +84,5 @@ class BasePage:
         element = self.find_element(locator_type, locator_value)
         actual_message = element.get_attribute("validationMessage")
         return (expected_message == actual_message) and element.is_displayed()
+
+ 

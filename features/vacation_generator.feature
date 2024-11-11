@@ -7,8 +7,8 @@ Feature: Vacation generator functionality
     And I enter login password as "this-is-garbage8"
     And I click Login button
     And I enter departure city as "toronto"
-    And I enter departure date as "2024-11-20"
-    And I enter return date as "2024-11-25"
+    And I enter departure date as "2024-11-25"
+    And I enter return date as "2024-11-30"
     And I enter desired trip location as "bangkok"
     And I enter a budget limit of "2500"
     And I enter a theme as "cafe"
@@ -31,8 +31,8 @@ Feature: Vacation generator functionality
     And I enter password as "123"
     And I click Login button
     And I enter departure city as "calgary"
-    And I enter departure date as "2024-11-11"
-    And I enter return date as "2024-11-18"
+    And I enter departure date as "2024-11-25"
+    And I enter return date as "2024-11-30"
     And I enter desired trip location as "toronto"
     And I enter a budget limit of "2500"
     And I enter a theme as "museum"
@@ -43,4 +43,24 @@ Feature: Vacation generator functionality
     And I click Generate My Trip button
     Then I should see vacation plan suggestions related to "family-friendly, train, disability-friendly, group discount"
 
-  
+  @vacation
+  Scenario: [TC0016] User enter negative value of budget
+  Given I got navigated to Login page
+    When I enter username as "abc"
+    And I enter password as "123"
+    And I click Login button
+    And I enter a budget limit of "-2500"
+    Then I should see an error popup indicating "Please enter a positive value."
+
+  @vacation
+  Scenario: [TC0017] User enter return date eariler than departure date
+    Given I got navigated to Login page
+    When I enter username as "abc"
+    And I enter password as "123"
+    And I click Login button
+    And I enter departure city as "calgary"
+    And I enter departure date as "2024-11-25"
+    And I enter return date as "2024-11-02"
+    And I click Generate My Trip button
+    # Change to your date format
+    Then I should get a return date error message with text as "Value must be 112520-02-04 or later." 

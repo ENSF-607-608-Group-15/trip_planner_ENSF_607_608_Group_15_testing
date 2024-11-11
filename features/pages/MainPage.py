@@ -1,7 +1,7 @@
 from selenium.common import NoSuchElementException
 from features.pages.BasePage import BasePage
 from utilities.HelperFunctions import format_date_by_locale
-
+from selenium.common.exceptions import NoAlertPresentException
 
 class MainPage(BasePage):
 
@@ -26,6 +26,7 @@ class MainPage(BasePage):
     logout_button_id = "logoutbtn"
     plan_content_xpath = "//div[contains(@class, 'plan-content')]" 
     previous_plan_xpath = "//div[contains(@class, 'vacation')]"
+    error_message_xpath = "//*[@class='form-control']//*[@id='errorMessage']"
 
 
     def verify_user_login(self):
@@ -89,3 +90,24 @@ class MainPage(BasePage):
                 print(f"Error finding element or text for keyword '{keyword}': {e}")
                 return False
         return True
+    
+    def is_alert_present(self):
+        try:
+            alert = self.driver.switch_to.alert
+            return alert
+        except NoAlertPresentException:
+            return None
+
+    def verify_error_popup(self, expected_message):
+        alert = self.is_alert_present()
+        if alert:
+            actual_message = alert.text
+            alert.accept() 
+            return actual_message == expected_message
+        return False
+    
+    def verify_return_date_error_message(self, expected_message):
+        return self.verify_validation_message("return_date_picker_id", self.return_date_picker_id, expected_message)
+    
+    def verify_error_message_equals(self, expected_message):
+        return self.element_text_equals("error_message_xpath", self.error_message_xpath, expected_message)
