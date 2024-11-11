@@ -32,7 +32,7 @@ def step_impl(context, budget):
    context.main_page.enter_budget(budget)
    context.budget = budget
 
-@when(u'I enter a theme as "{theme}"')
+@when(u'I enter a trip theme as "{theme}"')
 def step_impl(context, theme):
     context.main_page.enter_theme(theme)
     context.theme = theme
@@ -96,3 +96,7 @@ def step_impl(context, error_message):
 @then(u'I should get a return date error message with text as "{expected_text}"')
 def step_impl(context, expected_text):
     assert context.main_page.verify_return_date_error_message(expected_text)
+
+@then(u'I should see a PDF download link')
+def step_impl(context):
+    assert context.main_page.verify_pdf_download_link_exists()

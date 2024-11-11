@@ -27,6 +27,7 @@ class MainPage(BasePage):
     plan_content_xpath = "//div[contains(@class, 'plan-content')]" 
     previous_plan_xpath = "//div[contains(@class, 'vacation')]"
     error_message_xpath = "//*[@class='form-control']//*[@id='errorMessage']"
+    pdf_download_link_id = "dwnloadpdf"
 
 
     def verify_user_login(self):
@@ -111,3 +112,6 @@ class MainPage(BasePage):
     
     def verify_error_message_equals(self, expected_message):
         return self.element_text_equals("error_message_xpath", self.error_message_xpath, expected_message)
+
+    def verify_pdf_download_link_exists(self):
+        return self.verify_element_exists("pdf_download_link_id", self.pdf_download_link_id)
