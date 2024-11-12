@@ -1,6 +1,4 @@
 from behave import *
-from features.pages.LoginPage import LoginPage
-from features.pages.MainPage import MainPage
 
 
 @when(u'I enter departure city as "{departure_city}"')

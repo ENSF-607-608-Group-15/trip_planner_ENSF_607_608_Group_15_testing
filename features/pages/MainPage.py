@@ -1,4 +1,3 @@
-from selenium.common import NoSuchElementException
 from features.pages.BasePage import BasePage
 from utilities.HelperFunctions import format_date_by_locale
 
