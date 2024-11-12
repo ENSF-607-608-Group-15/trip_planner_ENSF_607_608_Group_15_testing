@@ -5,6 +5,12 @@ from utilities import ConfigReader
 
 
 def before_scenario(context, driver):
+    """
+    Sets up the browser environment before each test scenario.
+
+    :param context: Behave context object that holds the state for the test.
+    :param driver: WebDriver instance used to interact with the browser.
+    """
     browser_name = ConfigReader.read_config("basic info", "browser")
     if browser_name.__eq__("chrome"):
         context.driver = webdriver.Chrome()
@@ -20,10 +26,22 @@ def before_scenario(context, driver):
 
 
 def after_scenario(context, driver):
+    """
+    Cleans up the browser environment after each test scenario.
+
+    :param context: Behave context object that holds the state for the test.
+    :param driver: WebDriver instance used to interact with the browser.
+    """
     context.driver.quit()
 
 
 def after_step(context, step):
+    """
+    Takes a screenshot if a test step fails.
+
+    :param context: Behave context object that holds the state for the test.
+    :param step: The current step in the test scenario.
+    """
     if step.status == "failed":
         allure.attach(context.driver.get_screenshot_as_png(),
                       name="failed_screenshot",
