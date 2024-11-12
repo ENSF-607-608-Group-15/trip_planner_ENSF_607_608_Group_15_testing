@@ -27,7 +27,9 @@ class MainPage(BasePage):
     plan_content_xpath = "//*[@class='plan-content']"
     previous_plan_xpath = "//*[@class='vacation']"
     error_message_xpath = "//*[@class='form-control']//*[@id='errorMessage']"
+    trip_error_message_xpath = "//*[@class='error-message']"
     pdf_download_link_id = "dwnloadpdf"
+    trip_previous_settings_xpath = "//*[@class='trip']"
 
     # Methods
     def verify_user_login(self):
@@ -113,5 +115,18 @@ class MainPage(BasePage):
     def verify_error_message_equals(self, expected_message):
         return self.element_text_equals("error_message_xpath", self.error_message_xpath, expected_message)
 
+
     def verify_pdf_download_link_exists(self):
         return self.verify_element_exists("pdf_download_link_id", self.pdf_download_link_id)
+
+
+    def verify_trip_error_message_contains(self, keywords_list):
+        return self.verify_text_contains_list("trip_error_message_xpath", self.trip_error_message_xpath, keywords_list)
+
+
+    def verify_trip_previous_settings_contains(self, keywords_list):
+        return self.verify_text_contains_list("trip_previous_settings_xpath", self.trip_previous_settings_xpath, keywords_list)
+
+
+    def click_on_previous_settings_button(self):
+        self.click_on_element("previous_setting_button_id", self.previous_setting_button_id)

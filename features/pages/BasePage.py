@@ -15,7 +15,7 @@ class BasePage:
 
 
     # Methods
-    def find_element(self, locator_type, locator_value, wait_time=30):
+    def find_element(self, locator_type, locator_value, wait_time=15):
         element = None
         if locator_type.endswith("_id"):
             element = WebDriverWait(self.driver, wait_time).until(

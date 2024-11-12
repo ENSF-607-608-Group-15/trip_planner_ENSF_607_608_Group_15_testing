@@ -1,12 +1,12 @@
 Feature: User Login functionality
 
-  @login
+  @login @error_message
   Scenario: [TC0010] User login with no credentials
     Given I got navigated to Login page
     When I click Login button
     Then I should get a login username error message with text as "Please fill out this field."
 
-  @login
+  @login @error_message
   Scenario: [TC0011] User login with invalid credentials
     Given I got navigated to Login page
     When I enter login username as "UnregisteredUser"

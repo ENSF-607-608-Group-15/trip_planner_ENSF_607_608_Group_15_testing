@@ -14,7 +14,7 @@ Feature: User Sign up functionality
     And I click Login button
     Then I should get logged in
 
-  @signup
+  @signup @error_message
   Scenario: [TC0002] User sign up with taken username
     Given I got navigated to Login page
     When I switch to Sign up view
@@ -23,7 +23,7 @@ Feature: User Sign up functionality
     And I click Sign up button
     Then I should get a sign up error message with text as "Please enter a valid username and password."
 
-  @signup
+  @signup @error_message
   Scenario Outline: [TC0003] User sign up with username or password containing whitespaces
     Given I got navigated to Login page
     When I switch to Sign up view

@@ -54,6 +54,11 @@ def step_impl(context):
     context.main_page.click_on_previous_plan_button()
 
 
+@when(u'I click the Previous Settings button')
+def step_impl(context):
+    context.main_page.click_on_previous_settings_button()
+
+
 @then(u'I should see a list of previously generated plans')
 def step_impl(context):
     assert context.main_page.verify_previous_plan_is_active()
@@ -104,3 +109,15 @@ def step_impl(context, expected_text):
 @then(u'I should see a PDF download link')
 def step_impl(context):
     assert context.main_page.verify_pdf_download_link_exists()
+
+
+@then(u'I should see required field error messages for inputs "{keywords}"')
+def step_impl(context, keywords):
+    keywords_list = [keyword.strip() for keyword in keywords.split(",")]
+    assert context.main_page.verify_trip_error_message_contains(keywords_list)
+
+
+@then(u'I should see a table of my previous trip settings containing "{keywords}"')
+def step_impl(context, keywords):
+    keywords_list = [keyword.strip() for keyword in keywords.split(",")]
+    assert context.main_page.verify_trip_previous_settings_contains(keywords_list)
