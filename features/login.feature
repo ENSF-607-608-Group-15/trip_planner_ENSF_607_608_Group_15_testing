@@ -12,7 +12,7 @@ Feature: User Login functionality
     When I enter login username as "UnregisteredUser"
     And I enter login password as "fakepassword"
     And I click Login button
-    Then I should get a login error message with text as "Please enter a valid username and password."
+    Then I should get a login error message with text as "Invalid username or password. Please try again."
 
   @login
   Scenario Outline:[TC0012]  User login with valid credentials

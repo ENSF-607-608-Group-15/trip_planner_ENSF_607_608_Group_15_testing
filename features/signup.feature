@@ -21,7 +21,7 @@ Feature: User Sign up functionality
     And I enter sign up username as "taken_username"
     And I enter sign up password as "my_password"
     And I click Sign up button
-    Then I should get a sign up error message with text as "Please enter a valid username and password."
+    Then I should get a sign up error message with text as "Username already exists."
 
   @signup @error_message
   Scenario Outline: [TC0003] User sign up with username or password containing whitespaces
@@ -30,7 +30,7 @@ Feature: User Sign up functionality
     And I enter sign up username as "<username>"
     And I enter sign up password as "<password>"
     And I click Sign up button
-    Then I should get a sign up error message with text as "Username and password cannot contain whitespaces."
+    Then I should get a sign up error message with text as "Username and password cannot contain whitespace."
     Examples:
       | username | password     |
       | bad user | goodpassword |
